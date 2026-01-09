@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Culinary Gallery | La Trattoria</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;0,900;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#52141f",
+                        "gold": "#b8860b", /* Muted gold for elegance */
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#1f1315",
+                    },
+                    fontFamily: {
+                        "display": ["Noto Serif", "serif"],
+                        "sans": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom Masonry-like adjustment for standard grid */
+        .gold-frame {
+            border: 1px solid #b8860b;
+            padding: 8px;
+            background: #fff;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dark .gold-frame {
+            background: #2a1b1d;
+            border-color: #8a6508;
+        }
+        .gold-frame:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        .gallery-overlay {
+            background: linear-gradient(0deg, rgba(82, 20, 31, 0.8) 0%, rgba(82, 20, 31, 0) 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gold-frame:hover .gallery-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#171213] dark:text-gray-100">
+<div class="relative flex min-h-screen flex-col">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 w-full border-b border-solid border-[#e5e7eb] dark:border-gray-800 bg-white/90 dark:bg-background-dark/90 backdrop-blur-md px-6 md:px-20 py-4">
+<div class="mx-auto flex max-w-[1200px] items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="text-primary dark:text-gold">
+<span class="material-symbols-outlined text-3xl">restaurant</span>
+</div>
+<h1 class="text-xl font-black uppercase tracking-widest text-[#171213] dark:text-white">La Trattoria</h1>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-xs font-bold uppercase tracking-widest hover:text-gold transition-colors" href="#">Menu</a>
+<a class="text-xs font-bold uppercase tracking-widest text-gold border-b border-gold" href="#">Gallery</a>
+<a class="text-xs font-bold uppercase tracking-widest hover:text-gold transition-colors" href="#">Reservations</a>
+<a class="text-xs font-bold uppercase tracking-widest hover:text-gold transition-colors" href="#">About</a>
+</nav>
+<button class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all">
+                    Reserve
+                </button>
+</div>
+</header>
+<main class="flex-1">
+<!-- PageHeading -->
+<div class="mx-auto max-w-[1200px] px-6 py-16 text-center">
+<div class="inline-block mb-4">
+<div class="h-px w-12 bg-gold mx-auto mb-4"></div>
+<span class="text-xs font-bold uppercase tracking-[0.3em] text-gold">The Visual Experience</span>
+</div>
+<h2 class="text-5xl md:text-7xl font-black leading-tight tracking-tight mb-6">Culinary Gallery</h2>
+<p class="mx-auto max-w-2xl text-lg font-normal leading-relaxed text-[#83676c] dark:text-gray-400">
+                    A visual journey through the heart of Italy, capturing the essence of our kitchen 
+                    and the warmth of our Mediterranean soul. Every frame tells a story of tradition.
+                </p>
+</div>
+<!-- Chips / Filters -->
+<div class="mx-auto max-w-[1200px] px-6 mb-12">
+<div class="flex flex-wrap justify-center gap-4 border-y border-[#e5e7eb] dark:border-gray-800 py-6">
+<button class="px-6 py-1 text-sm font-bold uppercase tracking-widest text-primary border-b-2 border-primary dark:text-gold dark:border-gold">All</button>
+<button class="px-6 py-1 text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-primary dark:hover:text-gold transition-colors">Interior</button>
+<button class="px-6 py-1 text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-primary dark:hover:text-gold transition-colors">Primi</button>
+<button class="px-6 py-1 text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-primary dark:hover:text-gold transition-colors">Secondi</button>
+<button class="px-6 py-1 text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-primary dark:hover:text-gold transition-colors">Dolci</button>
+</div>
+</div>
+<!-- ImageGrid (Masonry Style) -->
+<div class="mx-auto max-w-[1200px] px-6 pb-24">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Item 1 - Tall -->
+<div class="gold-frame rounded-lg md:row-span-2 group cursor-pointer overflow-hidden">
+<div class="relative h-full w-full overflow-hidden rounded">
+<div class="aspect-[3/5] bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Close up of hand rolled pappardelle pasta" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDz9q9-Ca7BFZ13LZvLX5MAclpB5ssKndg1J-NDaaHpEkBmb9EmG_phfHIgFne-XuHOYVrSz3Rff303GtM-lhzmNOqUVyoS2v0Vfh7GquO31bn158rLpylK_G50EZZiaAe8e-nNwXPM4xso9iQthpuE8v6Qh2lw3RwA7CUzfly7pziKL43kmx4hfYLiLhvk10w-LyfgNvofxWNdH4obdIvDMB4vA16XvQwawhp6c6pOtK-dZVuT9SXsXE_vqUiXDSFr2hjJlVxfMDQ");'>
+</div>
+<div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6">
+<p class="text-white text-xl font-bold">Hand-rolled Pappardelle</p>
+<p class="text-white/80 text-sm font-sans mt-1">Saffron infused dough, slow-cooked ragù.</p>
+</div>
+</div>
+</div>
+<!-- Item 2 - Wide -->
+<div class="gold-frame rounded-lg md:col-span-2 group cursor-pointer overflow-hidden">
+<div class="relative h-full w-full overflow-hidden rounded">
+<div class="aspect-video bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Interior of dining room at sunset" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDh5wffRk4FDp9YratLDNDoJaRFl9jUXtmnsGuCQPq9gs3NvuXTaSp21jCq8_cdfHmHNHZBjjTEGKVcQ3acbbA6OeMrnY3w3hn3nt8HqDusuS-sQz8ojERDmklX9TXV2QU201DPPw4suIvID3yYxGFfwq4-_WS8HbNEc-7snk9EbBETLYvl9zH2Tt5BVwlOJdKT4eQqvS3mHTqSrD_7NLOs6QDAfVUlgag5uDthq0Wb5XsxjJp4NTK0V1cTYjDswkItOwfH1EQtdbY");'>
+</div>
+<div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6">
+<p class="text-white text-xl font-bold">The Sunset Dining Room</p>
+<p class="text-white/80 text-sm font-sans mt-1">Warm Mediterranean glow across rustic brick.</p>
+</div>
+</div>
+</div>
+<!-- Item 3 - Square-ish -->
+<div class="gold-frame rounded-lg group cursor-pointer overflow-hidden">
+<div class="relative h-full w-full overflow-hidden rounded">
+<div class="aspect-square bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Bottle of aged chianti wine" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBniqNyiS6RumXGd-H29Esad3YrzGZgINEfg5iPBBVsIRku03MXIgjZ7tBY1j9a2l3xDSATuV0yhvsX3z_IbvR4dcJj_g7TZITdLcWIMIoksCZYh1YJrtxPpO3ltS5zshLjRTOv0I7-ER-OBnIPsT_C23gGqk7IgRMs3JI0IUWD8mJxOQ98lHU82eksHda-FsEXaOpD1IguT-RiUjPf9Nt4aLSuYd5k6qZ-dwkNYGAPnpXJQX-aq5_z4OtFtyprJIbJRrhGkJYdGXo");'>
+</div>
+<div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6">
+<p class="text-white text-xl font-bold">Aged Chianti Riserva</p>
+<p class="text-white/80 text-sm font-sans mt-1">From the private cellars of Tuscany.</p>
+</div>
+</div>
+</div>
+<!-- Item 4 - Square-ish -->
+<div class="gold-frame rounded-lg group cursor-pointer overflow-hidden">
+<div class="relative h-full w-full overflow-hidden rounded">
+<div class="aspect-square bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Tiramisu dessert with cocoa dusting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBM8yrquPNmTHOsNzvdjysnVEW_S2TjuYmfGW6n7PJCf79ZTeQ6s9z8txpXZeDmQA23YYRavVT7DUCxTg_fW1uHvuAnq7K7wAq7_ndzhAiVgD7Xfjvs-SYiVNAuAJSzYs2s1kwrrzP6NZVbDaG3uRAkEwv244Fl46QPd_5stho1NxiN0wbXR_5npnR3MRuFZoGNSa7qpmAjsV05WwbpVYQ0dW3uVQqLRoGVoKPz8ldwMLV1UoubFIidUgmf_gtBrbQg2j_UJr5SUTw");'>
+</div>
+<div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6">
+<p class="text-white text-xl font-bold">Tiramisu Classico</p>
+<p class="text-white/80 text-sm font-sans mt-1">Mascarpone, espresso, and heritage cocoa.</p>
+</div>
+</div>
+</div>
+<!-- Item 5 - Wide -->
+<div class="gold-frame rounded-lg md:col-span-2 group cursor-pointer overflow-hidden">
+<div class="relative h-full w-full overflow-hidden rounded">
+<div class="aspect-video bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Chefs special seafood gnocchi" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDnKnjn21uMShHdnaHZkozJRVke8W5QLHNBqMhO3v5LrdTIuYtTbdMc4XFEmbQKE0bYFTDasOTGLDDQK6nYOeXR07FeTSLNsCfQt2CONFiox-vR_NGW7-zyhp1ZWRAefSMarGyKJTVMMQInaAqT8WLVmgU97h_wKn5YlYTzPiSe9UwJgJqwPIZT_8rlwW3MqIuBWdwM1IxZZCXSCHO8F2qfl9OewikXasy2sjm3SJD9yG6KggrO2vcJKZtYuYwK0kcfTvc3ukFodMo");'>
+</div>
+<div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6">
+<p class="text-white text-xl font-bold">Chef's Special Gnocchi</p>
+<p class="text-white/80 text-sm font-sans mt-1">Light potato pillows with sea bass and lemon.</p>
+</div>
+</div>
+</div>
+<!-- Item 6 - Tall -->
+<div class="gold-frame rounded-lg group cursor-pointer overflow-hidden">
+<div class="relative h-full w-full overflow-hidden rounded">
+<div class="aspect-[3/4] bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Mediterranean courtyard at dusk" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDPk55BiZy6__TtVwCYq5HAZUq30Xzd7P9yx9CgPcrT5hbLAAbiYTv1DtNHiB7117KNkNwKY-zUC_XFUCmW7TR-0tiqZL7g5sm9OQ4P6eDCr_kDzoYr6BGhG2S-H-UzOu6ywaGq7sOU7Kt9BWw_6l5mUeW68vjisxS0izu_h2iFXoNeccu7QhmodZyOk0ZbQyrYCs8gGXFoqCQbf7l7P1njp_Vu1aduFNZegbmlJYNaQSEHX89OJFw0ONXwlpaIv_cprqj0dYPRC5Q");'>
+</div>
+<div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6">
+<p class="text-white text-xl font-bold">The Courtyard</p>
+<p class="text-white/80 text-sm font-sans mt-1">Al fresco dining under the stars.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative Element -->
+<div class="w-full flex justify-center py-12 opacity-30 dark:opacity-10">
+<span class="material-symbols-outlined text-6xl text-gold">eco</span>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-primary text-white py-16 px-6 md:px-20">
+<div class="mx-auto max-w-[1200px] grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="md:col-span-2">
+<h3 class="text-2xl font-black uppercase tracking-widest mb-6">La Trattoria</h3>
+<p class="text-white/70 max-w-sm leading-relaxed mb-8">
+                        Experience the authentic flavors of the Mediterranean in a setting designed to evoke the warmth of an Italian sunset.
+                    </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:border-gold transition-all" href="#">
+<span class="material-symbols-outlined text-sm">public</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:border-gold transition-all" href="#">
+<span class="material-symbols-outlined text-sm">share</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-xs font-bold uppercase tracking-widest text-gold mb-6">Location</h4>
+<address class="not-italic text-white/70 space-y-2 text-sm">
+<p>123 Tuscany Lane</p>
+<p>Culinary District</p>
+<p>Rome, Italy</p>
+</address>
+</div>
+<div>
+<h4 class="text-xs font-bold uppercase tracking-widest text-gold mb-6">Contact</h4>
+<div class="text-white/70 space-y-2 text-sm">
+<p>T: +39 012 345 678</p>
+<p>E: hello@latrattoria.it</p>
+</div>
+</div>
+</div>
+<div class="mx-auto max-w-[1200px] mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-white/40 uppercase tracking-widest">
+<p>© 2024 La Trattoria. All rights reserved.</p>
+<div class="flex gap-8">
+<a class="hover:text-white transition-colors" href="#">Privacy</a>
+<a class="hover:text-white transition-colors" href="#">Terms</a>
+</div>
+</div>
+</footer>
+<!-- Floating Lightbox Mockup (Hidden by default, used for illustration of interaction) -->
+<!-- In a real app, this would be toggled by JS. Here it shows the requested design aesthetic. -->
+<div class="fixed inset-0 z-[100] bg-black/95 hidden items-center justify-center p-4">
+<button class="absolute top-8 right-8 text-white hover:text-gold transition-colors">
+<span class="material-symbols-outlined text-4xl">close</span>
+</button>
+<div class="relative max-w-5xl w-full">
+<div class="gold-frame rounded-lg p-2 bg-white/5 border-gold/50 shadow-2xl">
+<img alt="Fullscreen Gallery Image" class="w-full h-auto rounded" data-alt="Hand rolled pasta in high detail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmyOYR1ZKMwGW-g5jrWXujNK9CzIr8mNqD3LG4ARyFVSKifVVRwWftZJLeFZK5j1knhvGY2ezmxmHQDnpKxos3JOswSQpqKtKgGc8xjM4h_NXZM1zF34ycR4UNg4yvBTOrEN2eJqDIzFV9OcU7URGTi-lGaMPpkjzCtFwnqMZ_hvqns42UKRo5BrsCfzOppelUhLlowwSQWBm10oXmUbO_nuFLMUkke9qNK-MAsDU85TC2DaPyDpcbF1SMn5d-suWf2b5vU08RNJU"/>
+</div>
+<div class="mt-6 flex justify-between items-end text-white">
+<div>
+<h4 class="text-2xl font-bold">Hand-rolled Pappardelle</h4>
+<p class="text-white/60 font-sans">Primi Piatti • Traditional Saffron Dough</p>
+</div>
+<div class="flex gap-4">
+<button class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold/20 hover:border-gold transition-all">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold/20 hover:border-gold transition-all">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>
